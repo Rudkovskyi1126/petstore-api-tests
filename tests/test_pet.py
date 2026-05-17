@@ -58,3 +58,19 @@ def test_get_pets_by_status(base_url):
     get_response = requests.get(f"{base_url}/pet/findByStatus", params={"status": "available"})
     assert get_response.status_code == 200
     assert len(get_response.json()) > 0
+
+
+def test_get_nonexistent_pet(base_url):
+    response = requests.get(f"{base_url}/pet/128999998")
+    assert response.status_code == 404
+
+
+def test_create_pet_with_empty_name(base_url):
+    new_pet = \
+        {
+            "id": 127,
+            "name": "",
+            "status": "available"
+        }
+    post_response = requests.post(f"{base_url}/pet", json=new_pet)
+    assert post_response.status_code == 200
