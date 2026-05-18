@@ -52,4 +52,6 @@ def test_delete_order(base_url):
 def test_get_inventory(base_url):
     get_request = requests.get(f'{base_url}/store/inventory')
     assert get_request.status_code == 200
-    print(get_request.json())
+
+
+
