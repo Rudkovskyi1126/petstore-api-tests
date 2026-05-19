@@ -1,5 +1,7 @@
 # Petstore API Tests
 
+[![API Tests](https://github.com/Rudkovskyi1126/petstore-api-tests/actions/workflows/ci.yml/badge.svg)](https://github.com/Rudkovskyi1126/petstore-api-tests/actions/workflows/ci.yml)
+
 Automated API tests for the public [Petstore](https://petstore.swagger.io) API built with Python and pytest.
 
 ## Tech Stack
