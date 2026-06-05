@@ -1,57 +1,24 @@
-import requests
+def test_create_order(store_helper, order_payload):
+    response = store_helper.create_order(order_payload)
+    assert response.status_code == 200
+
+    store_helper.delete_order(order_payload["id"])
 
 
-def test_create_order(base_url):
-    new_order =\
-        {
-            "id": 11,
-            "petId": 127,
-            "quantity": 1,
-            "shipDate": "2026-05-17T11:36:00.229Z",
-            "status": "placed",
-            "complete": True
-        }
-    post_request = requests.post(f'{base_url}/store/order', json=new_order)
-    assert post_request.status_code == 200
+def test_get_order(store_helper, created_order):
+    response = store_helper.get_order(created_order["id"])
+    assert response.status_code == 200
+    assert response.json()["id"] == created_order["id"]
 
 
-def test_get_order(base_url):
-    new_order = \
-        {
-            "id": 12,
-            "petId": 128,
-            "quantity": 2,
-            "shipDate": "2026-05-17T11:36:00.229Z",
-            "status": "placed",
-            "complete": True
-        }
-    post_request = requests.post(f'{base_url}/store/order', json=new_order)
-    assert post_request.status_code == 200
-    get_request = requests.get(f'{base_url}/store/order/{new_order["id"]}')
-    assert get_request.status_code == 200
+def test_delete_order(store_helper, created_order):
+    delete_response = store_helper.delete_order(created_order["id"])
+    assert delete_response.status_code == 200
+
+    get_response = store_helper.get_order(created_order["id"])
+    assert get_response.status_code == 404
 
 
-def test_delete_order(base_url):
-    new_order = \
-        {
-            "id": 12,
-            "petId": 128,
-            "quantity": 2,
-            "shipDate": "2026-05-17T11:36:00.229Z",
-            "status": "placed",
-            "complete": True
-        }
-    post_request = requests.post(f'{base_url}/store/order', json=new_order)
-    assert post_request.status_code == 200
-    delete_request = requests.delete(f'{base_url}/store/order/{new_order["id"]}')
-    assert delete_request.status_code == 200
-    get_request = requests.get(f'{base_url}/store/order/{new_order["id"]}')
-    assert get_request.status_code == 404
-
-
-def test_get_inventory(base_url):
-    get_request = requests.get(f'{base_url}/store/inventory')
-    assert get_request.status_code == 200
-
-
-
+def test_get_inventory(store_helper):
+    response = store_helper.get_inventory()
+    assert response.status_code == 200
