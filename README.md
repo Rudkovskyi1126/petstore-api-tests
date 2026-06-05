@@ -7,7 +7,7 @@ Automated API tests for the public [Petstore](https://petstore.swagger.io) API b
 ## Tech Stack
 
 - Python 3.12
-- pytest + pytest-html
+- pytest + allure-pytest
 - requests
 - python-dotenv
 
@@ -70,10 +70,10 @@ Run tests:
 pytest -v
 ```
 
-Generate an HTML report:
+Generate an Allure report locally:
 
 ```bash
-pytest -v --html=report/index.html --self-contained-html
+allure serve allure-results
 ```
 
 ## CI/CD
