@@ -18,7 +18,8 @@ petstore-api-tests/
 ├── helpers/
 │   ├── pet_helper.py      # PetHelper — wraps /pet endpoints
 │   ├── store_helper.py    # StoreHelper — wraps /store endpoints
-│   └── user_helper.py     # UserHelper — wraps /user endpoints
+│   ├── user_helper.py     # UserHelper — wraps /user endpoints
+│   └── expect.py          # expect(response, code, message) — assertion helper
 ├── tests/
 │   ├── test_pet.py
 │   ├── test_store.py
