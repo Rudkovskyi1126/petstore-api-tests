@@ -4,7 +4,6 @@ from helpers.expect import expect
 def test_create_order(store_helper, order_payload):
     expect(store_helper.create_order(order_payload), code=200,
            reason="Creating a new order should return 200")
-
     store_helper.delete_order(order_payload["id"])
 
 
